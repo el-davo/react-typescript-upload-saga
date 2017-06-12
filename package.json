@@ -1,0 +1,34 @@
+{
+  "name": "react-typescript-upload-saga",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node server.ts"
+  },
+  "devDependencies": {
+    "@types/material-ui": "^0.17.10",
+    "@types/react": "^15.0.27",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-redux": "^4.4.42",
+    "@types/winston": "^2.3.3",
+    "awesome-typescript-loader": "^3.1.3",
+    "babel-core": "^6.25.0",
+    "html-webpack-plugin": "^2.28.0",
+    "material-ui": "^0.18.3",
+    "open": "^0.0.5",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-hot-loader": "^1.3.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0",
+    "redux-immutable-state-invariant": "1.2.4",
+    "redux-logger": "2.10.2",
+    "redux-saga": "0.10.5",
+    "ts-node": "^3.0.6",
+    "typescript": "2.3.2",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5",
+    "winston": "^2.3.1"
+  }
+}
