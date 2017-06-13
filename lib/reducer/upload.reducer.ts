@@ -1,11 +1,12 @@
 import { guid } from '../utils/utils';
 import * as actionTypes from './upload.action-types';
-import { upload, RtusUpload, UploadItem } from '../../main';
+import { FileMetadata, RtusUpload, upload, UploadItem } from '../../main';
 
 interface Action {
     type: string;
+    fileMetadata?: FileMetadata;
     uploadUrl?: string;
-    files?: File[];
+    formData?: FormData;
     uploadItem?: UploadItem;
     progress?: number;
     failedReason?: string;
@@ -13,9 +14,9 @@ interface Action {
 
 export function uploadReducer(state: RtusUpload = upload, action: Action): RtusUpload {
     switch (action.type) {
-        case actionTypes.RTUS_ADD_TO_UPLOAD_QUEUE:
+        case actionTypes.RTUS_COMMIT_TO_UPLOAD_QUEUE:
             let id = guid();
-            return { ...state, queue: { ...state.queue, [id]: { isStarted: false, isComplete: false, isFailed: false, progress: 0, files: [...action.files], id, uploadUrl: action.uploadUrl } } };
+            return { ...state, queue: { ...state.queue, [id]: { id, fileMetadata: action.fileMetadata, isStarted: false, isComplete: false, isFailed: false, progress: 0, formData: action.formData, uploadUrl: action.uploadUrl } } };
         case actionTypes.RTUS_UPLOAD_START:
             return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state[action.uploadItem.id], isStarted: true } } };
         case actionTypes.RTUS_UPLOAD_FINISHED:

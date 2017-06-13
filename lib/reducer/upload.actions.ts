@@ -1,22 +1,34 @@
 import * as actionTypes from './upload.action-types';
-import { UploadItem } from '../../main';
+import { FileMetadata, UploadItem } from '../../main';
 
-export function rtusAddToUploadQueue(uploadUrl: string, files: File[]) {
+export function addToUploadQueue(uploadUrl: string, files: File[]) {
     return { type: actionTypes.RTUS_ADD_TO_UPLOAD_QUEUE, uploadUrl, files };
 }
 
-export function rtusUploadStart(uploadItem: UploadItem) {
+export function addToUploadQueueFailed(reason: string) {
+    return { type: actionTypes.RTUS_ADD_TO_UPLOAD_QUEUE_FAILED, reason };
+}
+
+export function commitToUploadQueue(uploadUrl: string, fileMetadata: FileMetadata, formData: FormData) {
+    return { type: actionTypes.RTUS_COMMIT_TO_UPLOAD_QUEUE, uploadUrl, fileMetadata, formData };
+}
+
+export function uploadAll() {
+    return { type: actionTypes.RTUS_UPLOAD_ALL };
+}
+
+export function uploadStart(uploadItem: UploadItem) {
     return { type: actionTypes.RTUS_UPLOAD_START, uploadItem };
 }
 
-export function rtusUploadFinished(uploadItem: UploadItem) {
+export function uploadFinished(uploadItem: UploadItem) {
     return { type: actionTypes.RTUS_UPLOAD_FINISHED, uploadItem };
 }
 
-export function rtusUploadProgress(uploadItem: UploadItem, progress: number) {
+export function uploadProgress(uploadItem: UploadItem, progress: number) {
     return { type: actionTypes.RTUS_UPLOAD_PROGRESS, uploadItem, progress };
 }
 
-export function rtusUploadFailed(uploadItem: UploadItem) {
+export function uploadFailed(uploadItem: UploadItem) {
     return { type: actionTypes.RTUS_UPLOAD_FAILED, uploadItem };
 }

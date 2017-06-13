@@ -1,9 +1,8 @@
+import { RtusUpload, rtusUploadAll, rtusAddToUploadQueue } from '../../main';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { rtusActions, UploadItem } from '../../main';
 import { UploadComponent } from './upload.component';
-import { RtusUpload } from '../../main';
 
 interface Props {
     rtusUpload: RtusUpload;
@@ -12,11 +11,15 @@ interface Props {
 
 interface Actions {
     rtusAddToUploadQueue(uploadUrl: string, file: File);
+    rtusUploadAll()
 }
 
 const UploadContainer: React.StatelessComponent<Props> = props => {
     return (
-        <UploadComponent rtusUpload={props.rtusUpload} rtusAddToUploadQueue={props.actions.rtusAddToUploadQueue} />
+        <UploadComponent
+            rtusUpload={props.rtusUpload}
+            rtusAddToUploadQueue={props.actions.rtusAddToUploadQueue}
+            rtusUploadAll={props.actions.rtusUploadAll} />
     );
 };
 
@@ -28,7 +31,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators({ ...rtusActions }, dispatch)
+        actions: bindActionCreators({ rtusAddToUploadQueue, rtusUploadAll }, dispatch)
     };
 }
 

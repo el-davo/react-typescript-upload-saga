@@ -1,5 +1,5 @@
 import { UploadItem } from '../../main';
-import { rtusUploadProgress } from '../reducer/upload.actions';
+import { uploadProgress } from '../reducer/upload.actions';
 import { eventChannel } from 'redux-saga';
 
 export function getXhrRequest(): XMLHttpRequest {
@@ -20,7 +20,7 @@ export function listendForXhrProgress(uploadItem: UploadItem, xhrRequest: XMLHtt
         xhrRequest.upload.addEventListener("progress", function (evt) {
             if (evt.lengthComputable) {
                 var percentComplete = evt.loaded / evt.total;
-                emitter(rtusUploadProgress(uploadItem, percentComplete * 100));
+                emitter(uploadProgress(uploadItem, percentComplete * 100));
             }
         }, false);
 
