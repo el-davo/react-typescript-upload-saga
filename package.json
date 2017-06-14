@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.ts",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/el-davo/react-typescript-upload-saga.git"
+  },
   "scripts": {
     "dev": "ts-node server.ts"
   },

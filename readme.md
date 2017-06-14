@@ -164,3 +164,17 @@ export default connect<any, {}, any>(
     mapDispatchToProps
 )(UploadContainer);
 ```
+
+### Demo
+
+Clone the project
+
+```
+git clone https://github.com/el-davo/react-typescript-upload-saga.git
+```
+
+Run the project
+
+```
+npm run dev
+```
