@@ -1,11 +1,13 @@
 import { bootstrapSaga } from './lib/saga/bootstrap.saga';
 import { uploadReducer } from './lib/reducer/upload.reducer';
-import { addToUploadQueue, uploadAll } from './lib/reducer/upload.actions';
+import { addToUploadQueue, uploadAll, removeAllFiles, removeFile } from './lib/reducer/upload.actions';
 
 export const rtusSaga = bootstrapSaga;
 export const rtusReducer = uploadReducer;
 export const rtusAddToUploadQueue = addToUploadQueue;
 export const rtusUploadAll = uploadAll;
+export const rtusRemoveAllFiles = removeAllFiles;
+export const rtusRemoveFile = removeFile;
 
 export const upload = {
     queue: {}

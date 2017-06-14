@@ -18,13 +18,17 @@ export function uploadReducer(state: RtusUpload = upload, action: Action): RtusU
             let id = guid();
             return { ...state, queue: { ...state.queue, [id]: { id, fileMetadata: action.fileMetadata, isStarted: false, isComplete: false, isFailed: false, progress: 0, formData: action.formData, uploadUrl: action.uploadUrl } } };
         case actionTypes.RTUS_UPLOAD_START:
-            return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state[action.uploadItem.id], isStarted: true } } };
+            return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state.queue[action.uploadItem.id], isStarted: true } } };
         case actionTypes.RTUS_UPLOAD_FINISHED:
-            return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state[action.uploadItem.id], isStarted: false, isComplete: true } } };
+            return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state.queue[action.uploadItem.id], isStarted: false, isComplete: true } } };
         case actionTypes.RTUS_UPLOAD_PROGRESS:
-            return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state[action.uploadItem.id], progress: action.progress } } };
+            return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state.queue[action.uploadItem.id], progress: action.progress } } };
         case actionTypes.RTUS_UPLOAD_FAILED:
-            return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state[action.uploadItem.id], isStarted: false, isFailed: true, failedReason: action.failedReason } } };
+            return { ...state, queue: { ...state.queue, [action.uploadItem.id]: { ...state.queue[action.uploadItem.id], isStarted: false, isFailed: true, failedReason: action.failedReason } } };
+        case actionTypes.RTUS_REMOVE_ALL_FILES:
+            return { ...state, queue: {} };
+        case actionTypes.RTUS_REMOVE_FILE:
+            return { ...state, queue: {} };
         default:
             return state;
     }

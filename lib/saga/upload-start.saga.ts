@@ -10,11 +10,13 @@ function* upload({ uploadItem }: { uploadItem: UploadItem }) {
     try {
         let xhrRequest: XMLHttpRequest = getXhrRequest();
 
+        xhrRequest.open('POST', uploadItem.uploadUrl, true);
+
         yield [
             fork(uploadProgressSaga, uploadItem, xhrRequest)
         ];
     } catch (err) {
-        yield put(uploadFailed(uploadItem));
+        yield put(uploadFailed(uploadItem, err));
     }
 }
 

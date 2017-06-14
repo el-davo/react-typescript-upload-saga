@@ -29,6 +29,14 @@ export function uploadProgress(uploadItem: UploadItem, progress: number) {
     return { type: actionTypes.RTUS_UPLOAD_PROGRESS, uploadItem, progress };
 }
 
-export function uploadFailed(uploadItem: UploadItem) {
-    return { type: actionTypes.RTUS_UPLOAD_FAILED, uploadItem };
+export function uploadFailed(uploadItem: UploadItem, failedReason: string) {
+    return { type: actionTypes.RTUS_UPLOAD_FAILED, uploadItem, failedReason };
+}
+
+export function removeAllFiles() {
+    return { type: actionTypes.RTUS_REMOVE_ALL_FILES };
+}
+
+export function removeFile(id: string) {
+    return { type: actionTypes.RTUS_REMOVE_FILE };
 }

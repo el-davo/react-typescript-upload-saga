@@ -1,11 +1,14 @@
-import { RtusUpload, UploadItem, rtusUploadAll } from '../../main';
+import { rtusRemoveAllFiles, RtusUpload, rtusUploadAll, UploadItem } from '../../main';
 import { Card, CardText } from 'material-ui/Card';
+import { List, ListItem } from 'material-ui/List';
+import LinearProgress from 'material-ui/LinearProgress';
 import * as React from 'react';
 
 interface Props {
     rtusUpload: RtusUpload;
     rtusAddToUploadQueue(uploadUrl: string, file: File);
     rtusUploadAll();
+    rtusRemoveAllFiles();
 }
 
 export class UploadComponent extends React.Component<Props, any> {
@@ -15,14 +18,19 @@ export class UploadComponent extends React.Component<Props, any> {
 
         this._addFileToQueue = this._addFileToQueue.bind(this);
         this._startUpload = this._startUpload.bind(this);
+        this._removeAllFiles = this._removeAllFiles.bind(this);
     }
 
     _addFileToQueue(event) {
-        this.props.rtusAddToUploadQueue('http://localhost:3000', event.target.files);
+        this.props.rtusAddToUploadQueue('http://localhost:3001/upload', event.target.files);
     }
 
     _startUpload() {
         this.props.rtusUploadAll();
+    }
+
+    _removeAllFiles() {
+        this.props.rtusRemoveAllFiles();
     }
 
     render() {
@@ -30,17 +38,26 @@ export class UploadComponent extends React.Component<Props, any> {
             <div>
                 <input type="file" onChange={this._addFileToQueue} multiple />
                 <button onClick={this._startUpload}>Upload</button>
-                <table>
-                    <tbody>
-                        {
-                            Object.keys(this.props.rtusUpload.queue).map(key => {
-                                return <tr key={key}>
-                                    <td>{this.props.rtusUpload.queue[key].fileMetadata.name}</td>
-                                </tr>
-                            })
-                        }
-                    </tbody>
-                </table>
+                <button onClick={this._removeAllFiles}>Remove All</button>
+                <br />
+                <br />
+                <Card>
+                    <CardText>
+                        <List>
+                            {
+                                Object.keys(this.props.rtusUpload.queue).map(key => {
+                                    return <ListItem
+                                        key={key}
+                                        primaryText={this.props.rtusUpload.queue[key].fileMetadata.name}
+                                        secondaryText={<LinearProgress
+                                            mode="determinate"
+                                            style={{ height: 5 }}
+                                            value={this.props.rtusUpload.queue[key].progress} />} />
+                                })
+                            }
+                        </List>
+                    </CardText>
+                </Card>
             </div>
         );
     }

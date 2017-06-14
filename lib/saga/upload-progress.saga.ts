@@ -5,7 +5,7 @@ import { call, put, take } from 'redux-saga/effects';
 
 export function* uploadProgressSaga(uploadItem: UploadItem, xhrRequest: XMLHttpRequest) {
     try {
-        let channel = yield call(listendForXhrProgress);
+        let channel = yield call(listendForXhrProgress, uploadItem, xhrRequest);
 
         while (true) {
             let action = yield take(channel);

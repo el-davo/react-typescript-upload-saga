@@ -1,8 +1,13 @@
 import * as webpack from 'webpack';
 import * as DevServer from 'webpack-dev-server';
 import * as open from 'open';
-import {error, info} from 'winston';
-import {config} from './webpack.config';
+import * as express from 'express';
+import * as cors from 'cors';
+import * as expressFileUpload from 'express-fileupload';
+import { createWriteStream } from 'fs';
+import { join } from 'path';
+import { error, info } from 'winston';
+import { config } from './webpack.config';
 
 new DevServer(webpack(config), {
   publicPath: config.output.publicPath,
@@ -23,4 +28,19 @@ new DevServer(webpack(config), {
 
   info('Listening on port 3000');
   open('http://localhost:3000');
+});
+
+let uploadServer = express();
+uploadServer.use(cors());
+
+uploadServer.post('/upload', function (req, res) {
+  res.status(200).send('Done');
+});
+
+uploadServer.listen(3001, err => {
+  if (err) {
+    return error(err);
+  }
+
+  info('Listening on port 3001 for uploaded files');
 });
