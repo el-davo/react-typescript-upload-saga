@@ -1,7 +1,7 @@
 import { uploadProgressSaga } from './upload-progress.saga';
 import { getXhrRequest } from '../service/upload.service';
 import { uploadFailed } from '../reducer/upload.actions';
-import { UploadItem } from '../../main';
+import { UploadItem } from '../../index';
 import { RTUS_UPLOAD_START } from '../reducer/upload.action-types';
 import { takeEvery } from 'redux-saga';
 import { call, put, fork } from 'redux-saga/effects';

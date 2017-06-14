@@ -1,4 +1,4 @@
-import { UploadItem } from '../../main';
+import { UploadItem } from '../../index';
 import { uploadFailed, uploadFinished, uploadProgress } from '../reducer/upload.actions';
 import { eventChannel } from 'redux-saga';
 

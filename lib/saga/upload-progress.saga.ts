@@ -1,6 +1,6 @@
 import { listendForXhrProgress } from '../service/upload.service';
 import { takeLatest } from 'redux-saga';
-import { UploadItem } from '../../main';
+import { UploadItem } from '../../index';
 import { call, put, take } from 'redux-saga/effects';
 
 export function* uploadProgressSaga(uploadItem: UploadItem, xhrRequest: XMLHttpRequest) {

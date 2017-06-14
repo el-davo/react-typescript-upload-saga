@@ -1,4 +1,4 @@
-import { rtusRemoveAllFiles, RtusUpload, rtusUploadAll, UploadItem } from '../../main';
+import { rtusRemoveAllFiles, RtusUpload, rtusUploadAll, UploadItem } from '../../index';
 import { Card, CardText } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
 import LinearProgress from 'material-ui/LinearProgress';

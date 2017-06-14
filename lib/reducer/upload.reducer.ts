@@ -1,6 +1,6 @@
 import { guid } from '../utils/utils';
 import * as actionTypes from './upload.action-types';
-import { FileMetadata, RtusUpload, upload, UploadItem } from '../../main';
+import { FileMetadata, RtusUpload, upload, UploadItem } from '../../index';
 
 interface Action {
     type: string;

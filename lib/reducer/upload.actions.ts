@@ -1,5 +1,5 @@
 import * as actionTypes from './upload.action-types';
-import { FileMetadata, UploadItem } from '../../main';
+import { FileMetadata, UploadItem } from '../../index';
 
 export function addToUploadQueue(uploadUrl: string, files: File[]) {
     return { type: actionTypes.RTUS_ADD_TO_UPLOAD_QUEUE, uploadUrl, files };

@@ -1,4 +1,4 @@
-import { rtusSaga } from '../main';
+import { rtusSaga } from '../index';
 import { fork } from 'redux-saga/effects';
 
 export function* rootSaga() {

@@ -18,7 +18,7 @@ export const config = {
       {
         test: /\.tsx?$/,
         loaders: ['react-hot-loader', 'awesome-typescript-loader?useBabel=true&useWebpackText=true&useCache=true'],
-        include: [resolve(__dirname, 'main.ts'), resolve(__dirname, 'demo'), resolve(__dirname, 'lib')]
+        include: [resolve(__dirname, 'node_modules'), resolve(__dirname, 'index.ts'), resolve(__dirname, 'demo'), resolve(__dirname, 'lib')]
       }
     ]
   },
