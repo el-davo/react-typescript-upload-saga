@@ -17,6 +17,10 @@ export function uploadAll() {
     return { type: actionTypes.RTUS_UPLOAD_ALL };
 }
 
+export function uploadAllFailed() {
+    return { type: actionTypes.RTUS_UPLOAD_ALL_FAILED };
+}
+
 export function uploadStart(uploadItem: UploadItem) {
     return { type: actionTypes.RTUS_UPLOAD_START, uploadItem };
 }

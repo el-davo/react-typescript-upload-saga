@@ -3,22 +3,14 @@ import { uploadFailed, uploadFinished, uploadProgress } from '../reducer/upload.
 import { eventChannel } from 'redux-saga';
 
 export function getXhrRequest(): XMLHttpRequest {
-    let xmlhttp;
-
-    if ((<any>window).XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-
-    return xmlhttp;
+    return (window as any).XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 }
 
 export function listendForXhrProgress(uploadItem: UploadItem, xhrRequest: XMLHttpRequest) {
-    return eventChannel(emitter => {
+    return eventChannel((emitter) => {
 
-        xhrRequest.upload.onprogress = event => {
-            let progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+        xhrRequest.upload.onprogress = (event) => {
+            const progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
 
             emitter(uploadProgress(uploadItem, progress));
         };
@@ -27,13 +19,14 @@ export function listendForXhrProgress(uploadItem: UploadItem, xhrRequest: XMLHtt
             emitter(_isSuccessCode(xhrRequest.status) ? uploadFinished(uploadItem) : uploadFailed(uploadItem, xhrRequest.responseText));
         };
 
-        xhrRequest.onerror = event => {
+        xhrRequest.onerror = (event) => {
             emitter(uploadFailed(uploadItem, event.error));
         };
 
         xhrRequest.send(uploadItem.formData);
 
         return () => {
+            emitter(uploadFinished(uploadItem));
         };
     });
 }

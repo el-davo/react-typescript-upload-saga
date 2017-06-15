@@ -8,7 +8,9 @@
     "url": "git+https://github.com/el-davo/react-typescript-upload-saga.git"
   },
   "scripts": {
-    "dev": "ts-node server.ts"
+    "dev": "ts-node server.ts",
+     "lint": "tslint lib/**/*.ts demo/**/*.ts ./*.ts",
+     "lint:fix": "npm run lint -- --fix"
   },
   "devDependencies": {
     "@types/material-ui": "^0.17.10",
@@ -35,6 +37,7 @@
     "redux-logger": "2.10.2",
     "redux-saga": "0.10.5",
     "ts-node": "^3.0.6",
+    "tslint": "^5.4.3",
     "typescript": "2.3.2",
     "webpack": "^2.6.1",
     "webpack-dev-server": "^2.4.5",

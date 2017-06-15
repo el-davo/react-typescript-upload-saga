@@ -30,14 +30,14 @@ new DevServer(webpack(config), {
   open('http://localhost:3000');
 });
 
-let uploadServer = express();
+const uploadServer = express();
 uploadServer.use(cors());
 
-uploadServer.post('/upload', function (req, res) {
+uploadServer.post('/upload', (req, res) => {
   res.status(200).send('Done');
 });
 
-uploadServer.listen(3001, err => {
+uploadServer.listen(3001, (err) => {
   if (err) {
     return error(err);
   }

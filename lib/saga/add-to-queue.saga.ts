@@ -8,10 +8,10 @@ import { call, put, fork } from 'redux-saga/effects';
 
 function* fetch({ uploadUrl, files }: { uploadUrl: string, files: File[] }) {
     try {
-        let xhrRequest: XMLHttpRequest = getXhrRequest();
+        const xhrRequest: XMLHttpRequest = getXhrRequest();
 
-        for (let file of files) {
-            let data = new FormData();
+        for (const file of files) {
+            const data = new FormData();
             data.append('file', file, file.name);
 
             yield put(commitToUploadQueue(uploadUrl, { name: file.name, size: file.size }, data));

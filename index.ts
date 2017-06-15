@@ -23,7 +23,7 @@ interface UploadQueue {
 
 export interface UploadItem {
     id: string;
-    fileMetadata: FileMetadata
+    fileMetadata: FileMetadata;
     uploadUrl: string;
     formData: FormData;
     isStarted: boolean;
