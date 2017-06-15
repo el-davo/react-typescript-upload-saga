@@ -1,16 +1,16 @@
 import * as actionTypes from './upload.action-types';
 import { FileMetadata, UploadItem } from '../../index';
 
-export function addToUploadQueue(uploadUrl: string, files: File[]) {
-    return { type: actionTypes.RTUS_ADD_TO_UPLOAD_QUEUE, uploadUrl, files };
+export function addToUploadQueue(uploadUrl: string, files: File[], customCompleteAction: string) {
+    return { type: actionTypes.RTUS_ADD_TO_UPLOAD_QUEUE, uploadUrl, files, customCompleteAction };
 }
 
 export function addToUploadQueueFailed(reason: string) {
     return { type: actionTypes.RTUS_ADD_TO_UPLOAD_QUEUE_FAILED, reason };
 }
 
-export function commitToUploadQueue(uploadUrl: string, fileMetadata: FileMetadata, formData: FormData) {
-    return { type: actionTypes.RTUS_COMMIT_TO_UPLOAD_QUEUE, uploadUrl, fileMetadata, formData };
+export function commitToUploadQueue(uploadUrl: string, fileMetadata: FileMetadata, formData: FormData, customCompleteAction: string) {
+    return { type: actionTypes.RTUS_COMMIT_TO_UPLOAD_QUEUE, uploadUrl, fileMetadata, formData, customCompleteAction };
 }
 
 export function uploadAll() {

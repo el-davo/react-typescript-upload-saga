@@ -6,7 +6,7 @@ import { RTUS_ADD_TO_UPLOAD_QUEUE, RTUS_UPLOAD_START } from '../reducer/upload.a
 import { takeEvery } from 'redux-saga';
 import { call, put, fork } from 'redux-saga/effects';
 
-function* fetch({ uploadUrl, files }: { uploadUrl: string, files: File[] }) {
+function* fetch({ uploadUrl, files, customCompleteAction }: { uploadUrl: string, files: File[], customCompleteAction: string }) {
     try {
         const xhrRequest: XMLHttpRequest = getXhrRequest();
 
@@ -14,7 +14,7 @@ function* fetch({ uploadUrl, files }: { uploadUrl: string, files: File[] }) {
             const data = new FormData();
             data.append('file', file, file.name);
 
-            yield put(commitToUploadQueue(uploadUrl, { name: file.name, size: file.size }, data));
+            yield put(commitToUploadQueue(uploadUrl, { name: file.name, size: file.size }, data, customCompleteAction));
         }
     } catch (err) {
         yield put(addToUploadQueueFailed(err));

@@ -5,6 +5,9 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from './store/store';
 import UploadContainer from './upload/upload.container';
+import * as injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 render(
   <MuiThemeProvider>
