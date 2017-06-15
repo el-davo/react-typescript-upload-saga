@@ -1,3 +1,4 @@
+import { uploadFailed } from '../reducer/upload.actions';
 import { listendForXhrProgress } from '../service/upload.service';
 import { takeLatest } from 'redux-saga';
 import { UploadItem } from '../../index';
@@ -5,14 +6,14 @@ import { call, put, take } from 'redux-saga/effects';
 
 export function* uploadProgressSaga(uploadItem: UploadItem, xhrRequest: XMLHttpRequest) {
     try {
-        let channel = yield call(listendForXhrProgress, uploadItem, xhrRequest);
+        const channel = yield call(listendForXhrProgress, uploadItem, xhrRequest);
 
         while (true) {
-            let action = yield take(channel);
+            const action = yield take(channel);
 
             yield put(action);
         }
     } catch (err) {
-        console.log(err);
+        yield put(uploadFailed(uploadItem, err));
     }
 }

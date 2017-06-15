@@ -1,0 +1,44 @@
+{
+  "extends": [
+    "tslint:latest"
+  ],
+  "rules": {
+    "callable-types": true,
+    "interface-name": false,
+    "interface-over-type-literal": true,
+    "max-classes-per-file": false,
+    "object-literal-sort-keys": false,
+    "space-before-function-paren": [
+      true,
+      "never"
+    ],
+    "max-line-length": [
+      true,
+      140
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "no-angle-bracket-type-assertion": true,
+    "no-empty-interface": true,
+    "no-string-throw": true,
+    "no-var-requires": false,
+    "no-object-literal-type-assertion": false,
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "never",
+        "singleline": "never"
+      }
+    ],
+    "indent": 2,
+    "variable-name": [
+      true,
+      "ban-keywords"
+    ],
+    "member-access": false,
+    "ordered-imports": false
+  }
+}

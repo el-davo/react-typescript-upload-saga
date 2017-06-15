@@ -8,5 +8,5 @@ export function* bootstrapSaga() {
         fork(addToQueueSaga),
         fork(uploadAllSaga),
         fork(uploadStartSaga)
-    ]
+    ];
 }

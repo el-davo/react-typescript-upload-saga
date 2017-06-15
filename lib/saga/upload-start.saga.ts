@@ -8,7 +8,7 @@ import { call, put, fork } from 'redux-saga/effects';
 
 function* upload({ uploadItem }: { uploadItem: UploadItem }) {
     try {
-        let xhrRequest: XMLHttpRequest = getXhrRequest();
+        const xhrRequest: XMLHttpRequest = getXhrRequest();
 
         xhrRequest.open('POST', uploadItem.uploadUrl, true);
 
