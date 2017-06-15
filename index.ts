@@ -31,6 +31,7 @@ export interface UploadItem {
     isFailed: boolean;
     failedReason?: string;
     progress: number;
+    customCompleteAction: string;
 }
 
 export interface FileMetadata {

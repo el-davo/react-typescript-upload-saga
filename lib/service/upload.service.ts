@@ -16,7 +16,12 @@ export function listendForXhrProgress(uploadItem: UploadItem, xhrRequest: XMLHtt
         };
 
         xhrRequest.onload = () => {
-            emitter(_isSuccessCode(xhrRequest.status) ? uploadFinished(uploadItem) : uploadFailed(uploadItem, xhrRequest.responseText));
+            if (_isSuccessCode(xhrRequest.status)) {
+                emitter(uploadFinished(uploadItem));
+                emitter({ type: uploadItem.customCompleteAction, response: JSON.parse(xhrRequest.response) });
+            } else {
+                emitter(uploadFailed(uploadItem, xhrRequest.responseText));
+            }
         };
 
         xhrRequest.onerror = (event) => {

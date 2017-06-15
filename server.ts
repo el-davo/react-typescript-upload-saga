@@ -34,7 +34,7 @@ const uploadServer = express();
 uploadServer.use(cors());
 
 uploadServer.post('/upload', (req, res) => {
-  res.status(200).send('Done');
+  res.status(200).send({status: 'Uploaded'});
 });
 
 uploadServer.listen(3001, (err) => {

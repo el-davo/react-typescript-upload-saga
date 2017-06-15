@@ -10,6 +10,7 @@ interface Action {
     uploadItem?: UploadItem;
     progress?: number;
     failedReason?: string;
+    customCompleteAction: string;
 }
 
 export function uploadReducer(state: RtusUpload = upload, action: Action): RtusUpload {
@@ -28,7 +29,8 @@ export function uploadReducer(state: RtusUpload = upload, action: Action): RtusU
                         progress: 0,
                         formData:
                         action.formData,
-                        uploadUrl: action.uploadUrl
+                        uploadUrl: action.uploadUrl,
+                        customCompleteAction: action.customCompleteAction
                     }
                 }
             };

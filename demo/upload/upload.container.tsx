@@ -10,7 +10,7 @@ interface Props {
 }
 
 interface Actions {
-    rtusAddToUploadQueue(uploadUrl: string, file: File);
+    rtusAddToUploadQueue(uploadUrl: string, file: File, customCompleteEvent: string);
     rtusUploadAll();
     rtusRemoveAllFiles();
 }
