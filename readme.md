@@ -53,14 +53,14 @@ export function* rootSaga() {
 Next you will use the uploader in a component like so
 
 ```
-import { rtusRemoveAllFiles, RtusUpload, rtusUploadAll, UploadItem } from 'react-typescript-upload-saga';
+import { rtusRemoveAllFiles, RtusUpload, rtusUploadAll, UploadItem, CustomFormData, CustomHeaderData } from 'react-typescript-upload-saga';
 import { List, ListItem } from 'material-ui/List';
 import LinearProgress from 'material-ui/LinearProgress';
 import * as React from 'react';
 
 interface Props {
     rtusUpload: RtusUpload;
-    rtusAddToUploadQueue(uploadUrl: string, file: File);
+    rtusAddToUploadQueue(uploadUrl: string, file: File, customCompleteAction: string, customFormData: CustomFormData, customHeaderData: CustomHeaderData);
     rtusUploadAll();
     rtusRemoveAllFiles();
 }
@@ -120,7 +120,7 @@ export class UploadComponent extends React.Component<Props, any> {
 And finally we need a container for our component to wire in the redux state and rtus functions
 
 ```
-import { RtusUpload, rtusUploadAll, rtusAddToUploadQueue, rtusRemoveAllFiles } from 'react-typescript-upload-saga';
+import { rtusRemoveAllFiles, RtusUpload, rtusUploadAll, UploadItem, CustomFormData, CustomHeaderData } from 'react-typescript-upload-saga';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -132,7 +132,7 @@ interface Props {
 }
 
 interface Actions {
-    rtusAddToUploadQueue(uploadUrl: string, file: File);
+    rtusAddToUploadQueue(uploadUrl: string, file: File, customCompleteAction: string, customFormData: CustomFormData, customHeaderData: CustomHeaderData);
     rtusUploadAll();
     rtusRemoveAllFiles();
 }

@@ -8,6 +8,7 @@
     "interface-over-type-literal": true,
     "max-classes-per-file": false,
     "object-literal-sort-keys": false,
+    "align": [true, "statements"],
     "space-before-function-paren": [
       true,
       "never"

@@ -1,6 +1,6 @@
 import { guid } from '../utils/utils';
 import * as actionTypes from './upload.action-types';
-import { FileMetadata, RtusUpload, upload, UploadItem } from '../../index';
+import { FileMetadata, RtusUpload, upload, UploadItem, CustomFormData, CustomHeaderData } from '../../index';
 
 interface Action {
     type: string;
@@ -11,6 +11,8 @@ interface Action {
     progress?: number;
     failedReason?: string;
     customCompleteAction: string;
+    customFormData?: CustomFormData;
+    customHeaderData?: CustomHeaderData;
 }
 
 export function uploadReducer(state: RtusUpload = upload, action: Action): RtusUpload {
@@ -30,7 +32,9 @@ export function uploadReducer(state: RtusUpload = upload, action: Action): RtusU
                         formData:
                         action.formData,
                         uploadUrl: action.uploadUrl,
-                        customCompleteAction: action.customCompleteAction
+                        customCompleteAction: action.customCompleteAction,
+                        customFormData: action.customFormData,
+                        customHeaderData: action.customHeaderData
                     }
                 }
             };

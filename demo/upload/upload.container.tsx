@@ -1,4 +1,4 @@
-import { RtusUpload, rtusUploadAll, rtusAddToUploadQueue, rtusRemoveAllFiles } from '../../index';
+import { RtusUpload, rtusUploadAll, rtusAddToUploadQueue, rtusRemoveAllFiles, CustomFormData, CustomHeaderData } from '../../index';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,7 +10,7 @@ interface Props {
 }
 
 interface Actions {
-    rtusAddToUploadQueue(uploadUrl: string, file: File, customCompleteEvent: string);
+    rtusAddToUploadQueue(uploadUrl: string, file: File, customCompleteEvent: string, customFormData: CustomFormData, customHeaderData: CustomHeaderData);
     rtusUploadAll();
     rtusRemoveAllFiles();
 }

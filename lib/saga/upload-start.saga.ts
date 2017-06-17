@@ -12,6 +12,10 @@ function* upload({ uploadItem }: { uploadItem: UploadItem }) {
 
         xhrRequest.open('POST', uploadItem.uploadUrl, true);
 
+        Object.keys(uploadItem.customHeaderData).map((key) => {
+            xhrRequest.setRequestHeader(key, uploadItem.customHeaderData[key]);
+        });
+
         yield [
             fork(uploadProgressSaga, uploadItem, xhrRequest)
         ];
