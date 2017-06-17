@@ -32,6 +32,16 @@ export interface UploadItem {
     failedReason?: string;
     progress: number;
     customCompleteAction: string;
+    customFormData: CustomFormData;
+    customHeaderData: CustomHeaderData;
+}
+
+export interface CustomFormData {
+    [key: string]: any;
+}
+
+export interface CustomHeaderData {
+    [key: string]: any;
 }
 
 export interface FileMetadata {

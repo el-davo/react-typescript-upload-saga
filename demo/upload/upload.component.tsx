@@ -1,5 +1,5 @@
 import { CUSTOM_UPLOAD_COMPLETE } from './upload.action-types';
-import { rtusRemoveAllFiles, RtusUpload, rtusUploadAll, UploadItem } from '../../index';
+import { rtusRemoveAllFiles, RtusUpload, rtusUploadAll, UploadItem, CustomFormData, CustomHeaderData } from '../../index';
 import { Card, CardText } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
 import LinearProgress from 'material-ui/LinearProgress';
@@ -7,7 +7,7 @@ import * as React from 'react';
 
 interface Props {
     rtusUpload: RtusUpload;
-    rtusAddToUploadQueue(uploadUrl: string, file: File, customCompleteAction: string);
+    rtusAddToUploadQueue(uploadUrl: string, file: File, customCompleteAction: string, customFormData: CustomFormData, customHeaderData: CustomHeaderData);
     rtusUploadAll();
     rtusRemoveAllFiles();
 }
@@ -23,7 +23,11 @@ export class UploadComponent extends React.Component<Props, any> {
     }
 
     _addFileToQueue(event) {
-        this.props.rtusAddToUploadQueue('http://localhost:3001/upload', event.target.files, CUSTOM_UPLOAD_COMPLETE);
+        this.props.rtusAddToUploadQueue('http://localhost:3001/upload',
+            event.target.files, CUSTOM_UPLOAD_COMPLETE,
+            { myKey: 'myVal' },
+            { bla: 'abc123' }
+        );
     }
 
     _startUpload() {
