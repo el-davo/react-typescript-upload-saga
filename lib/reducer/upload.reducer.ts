@@ -8,7 +8,10 @@ interface Action {
     uploadUrl?: string;
     formData?: FormData;
     uploadItem?: UploadItem;
+    uploadItemId?: string;
     progress?: number;
+    secondsRemaining?: number;
+    bytesPerSecond?: number;
     failedReason?: string;
     customCompleteAction: string;
     customFormData?: CustomFormData;
@@ -29,6 +32,9 @@ export function uploadReducer(state: RtusUpload = upload, action: Action): RtusU
                         isComplete: false,
                         isFailed: false,
                         progress: 0,
+                        secondsRemaining: 0,
+                        bytesPerSecond: 0,
+                        startedAt: null,
                         formData:
                         action.formData,
                         uploadUrl: action.uploadUrl,
@@ -42,9 +48,10 @@ export function uploadReducer(state: RtusUpload = upload, action: Action): RtusU
             return {
                 ...state,
                 queue: {
-                    ...state.queue, [action.uploadItem.id]: {
-                        ...state.queue[action.uploadItem.id],
-                        isStarted: true
+                    ...state.queue, [action.uploadItemId]: {
+                        ...state.queue[action.uploadItemId],
+                        isStarted: true,
+                        startedAt: new Date()
                     }
                 }
             };
@@ -66,7 +73,9 @@ export function uploadReducer(state: RtusUpload = upload, action: Action): RtusU
                 queue: {
                     ...state.queue, [action.uploadItem.id]: {
                         ...state.queue[action.uploadItem.id],
-                        progress: action.progress
+                        progress: action.progress,
+                        secondsRemaining: action.secondsRemaining,
+                        bytesPerSecond: action.bytesPerSecond
                     }
                 }
             };

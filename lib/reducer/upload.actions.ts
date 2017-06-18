@@ -41,20 +41,20 @@ export function uploadAll() {
     return { type: actionTypes.RTUS_UPLOAD_ALL };
 }
 
-export function uploadAllFailed() {
-    return { type: actionTypes.RTUS_UPLOAD_ALL_FAILED };
+export function uploadAllFailed(err: string) {
+    return { type: actionTypes.RTUS_UPLOAD_ALL_FAILED, err };
 }
 
-export function uploadStart(uploadItem: UploadItem) {
-    return { type: actionTypes.RTUS_UPLOAD_START, uploadItem };
+export function uploadStart(uploadItemId: string) {
+    return { type: actionTypes.RTUS_UPLOAD_START, uploadItemId };
 }
 
 export function uploadFinished(uploadItem: UploadItem) {
     return { type: actionTypes.RTUS_UPLOAD_FINISHED, uploadItem };
 }
 
-export function uploadProgress(uploadItem: UploadItem, progress: number) {
-    return { type: actionTypes.RTUS_UPLOAD_PROGRESS, uploadItem, progress };
+export function uploadProgress(uploadItem: UploadItem, progress: number, secondsRemaining: number, bytesPerSecond: number) {
+    return { type: actionTypes.RTUS_UPLOAD_PROGRESS, uploadItem, progress, secondsRemaining, bytesPerSecond };
 }
 
 export function uploadFailed(uploadItem: UploadItem, failedReason: string) {
