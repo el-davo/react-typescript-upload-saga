@@ -53,7 +53,7 @@ export class UploadComponent extends React.Component<Props, any> {
                                 Object.keys(this.props.rtusUpload.queue).map(key => {
                                     return <ListItem
                                         key={key}
-                                        primaryText={this.props.rtusUpload.queue[key].fileMetadata.name}
+                                        primaryText={`${this.props.rtusUpload.queue[key].fileMetadata.name} (${this.props.rtusUpload.queue[key].secondsRemaining} seconds remaining) (${this.props.rtusUpload.queue[key].bytesPerSecond}Bps)`}
                                         secondaryText={<LinearProgress
                                             mode="determinate"
                                             style={{ height: 5 }}

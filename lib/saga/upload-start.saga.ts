@@ -4,9 +4,12 @@ import { uploadFailed } from '../reducer/upload.actions';
 import { UploadItem } from '../../index';
 import { RTUS_UPLOAD_START } from '../reducer/upload.action-types';
 import { takeEvery } from 'redux-saga';
-import { call, put, fork } from 'redux-saga/effects';
+import { call, put, fork, select } from 'redux-saga/effects';
 
-function* upload({ uploadItem }: { uploadItem: UploadItem }) {
+function* upload({ uploadItemId }: { uploadItemId: string }) {
+
+    const uploadItem: UploadItem = yield select((state: any) => state.rtusUpload.queue[uploadItemId]);
+
     try {
         const xhrRequest: XMLHttpRequest = getXhrRequest();
 

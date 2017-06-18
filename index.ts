@@ -34,6 +34,9 @@ export interface UploadItem {
     customCompleteAction: string;
     customFormData: CustomFormData;
     customHeaderData: CustomHeaderData;
+    startedAt?: Date;
+    secondsRemaining?: number;
+    bytesPerSecond?: number;
 }
 
 export interface CustomFormData {

@@ -11,8 +11,12 @@ export function listendForXhrProgress(uploadItem: UploadItem, xhrRequest: XMLHtt
 
         xhrRequest.upload.onprogress = (event) => {
             const progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+            const secondsElapsed = (new Date().getTime() - uploadItem.startedAt.getTime()) / 1000;
+            const remainingBytes = event.total - event.loaded;
+            const bytesPerSecond = Math.floor(event.loaded / secondsElapsed);
+            const secondsRemaining = Math.floor(remainingBytes / bytesPerSecond);
 
-            emitter(uploadProgress(uploadItem, progress));
+            emitter(uploadProgress(uploadItem, progress, secondsRemaining, bytesPerSecond));
         };
 
         xhrRequest.onload = () => {

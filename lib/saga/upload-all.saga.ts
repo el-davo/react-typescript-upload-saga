@@ -12,11 +12,11 @@ function* upload() {
 
         yield* Object.keys(uploadList.queue).map(function*(key) {
             if (!uploadList.queue[key].isStarted && !uploadList.queue[key].isComplete) {
-                yield put(uploadStart(uploadList.queue[key]));
+                yield put(uploadStart(key));
             }
         });
     } catch (err) {
-        yield put(uploadAllFailed());
+        yield put(uploadAllFailed(err));
     }
 }
 
